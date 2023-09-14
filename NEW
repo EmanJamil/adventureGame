@@ -1,0 +1,107 @@
+import java.util.Scanner;
+
+public class BuildingGame {
+    private static int lives = 3;
+    private static int currentFloor = 4;
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Adventure Game!\n");
+        
+        while (currentFloor > 0) {
+            System.out.println("You are on floor " + currentFloor + ".");
+            
+            switch (currentFloor) {
+                case 4:
+                    englishFloor();
+                    break;
+                case 3:
+                    mathFloor();
+                    break;
+                case 2:
+                    scienceFloor();
+                    break;
+                case 1:
+                    javaFloor();
+                    break;
+                default:
+                    System.out.println("Invalid floor.");
+                    break;
+            }
+        }
+        
+        System.out.println("Congratulations! You have completed all the floors!");
+    }
+    
+    public static void decreaseLife() {
+        lives--;
+        System.out.println("Incorrect answer! You lost a life.");
+        
+        if (lives == 0) {
+            System.out.println("You lost all your lives. Game over!");
+            currentFloor = 0;
+        }
+    }
+    
+    public static void englishFloor() {
+        System.out.println("Floor 4: English");
+        System.out.println("Question: Fill in the blank with the correct letter and word: C _ T");
+        
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+        
+        if (answer.equalsIgnoreCase("A") || answer.equalsIgnoreCase("Cat")) {
+            System.out.println("Correct answer!");
+            currentFloor--;
+        } else {
+            decreaseLife();
+        }
+    }
+    
+    public static void mathFloor() {
+        System.out.println("Floor 3: Math");
+        System.out.println("Question: Solve 4 * 8 - 3 * 5");
+        
+        Scanner scanner = new Scanner(System.in);
+        int answer = scanner.nextInt();
+        
+        if (answer == 17) {
+            System.out.println("Correct answer!");
+            currentFloor--;
+        } else {
+            decreaseLife();
+        }
+    }
+    
+    public static void scienceFloor() {
+        System.out.println("Floor 2: Science");
+        System.out.println("Question: What is the largest planet in our solar system? ");
+        
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+        
+        if (answer.equalsIgnoreCase("Jupiter")) {
+            System.out.println("Correct answer!");
+            currentFloor--;
+        } else {
+            decreaseLife();
+        }
+    }
+    
+    public static void javaFloor() {
+        System.out.println("Floor 1: Java");
+        System.out.println("Question: Which of the following is the correct next line of code?\n"
+                            + "a) System.out.println(\"Hello World!\");\n"
+                            + "b) print(\"Hello World!\");\n"
+                            + "c) Console.write(\"Hello World!\");");
+        
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+        
+        if (answer.equalsIgnoreCase("a")) {
+            System.out.println("Correct answer!");
+            currentFloor--;
+        } else {
+            decreaseLife();
+        }
+    }
+}
